@@ -1,0 +1,27 @@
+CREATE TABLE category (
+    id INTEGER PRIMARY KEY,
+    title TEXT
+);
+
+CREATE TABLE brand (
+    id INTEGER PRIMARY KEY,
+    title TEXT,
+    logo BLOB
+);
+
+CREATE TABLE product (
+    id INTEGER PRIMARY KEY,
+    title TEXT,
+    price NUMERIC,
+    amount INTEGER,
+    category_id INTEGER,
+    brand_id INTEGER,
+
+    CONSTRAINT product_category_FK
+        FOREIGN KEY (category_id)
+        REFERENCES category(id),
+
+    CONSTRAINT product_brand_FK
+        FOREIGN KEY (brand_id)
+        REFERENCES brand(id)
+);
